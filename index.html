@@ -1,103 +1,288 @@
-
 <!DOCTYPE html>
-<html lang="fr">
+<!-- 10to11.tech — refreshed 2026-06-13 -->
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>10TO11 Bienvenue</title>
-  <link rel="icon" type="image/png" href="10TO11.png">
-  <link rel="stylesheet" href="styles.css">
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <title>10TO11 — AI solutions for SMEs</title>
+  <meta name="description" content="10TO11 helps small and mid-sized companies design, build and ship AI solutions. Strategy, full-stack delivery, and a bias for finishing. Monaco and remote.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --ink:#14203A;
+      --navy:#1B2A50;
+      --navy-2:#243566;
+      --bg:#F6F7F9;
+      --surface:#FFFFFF;
+      --muted:#5A6478;
+      --muted-on-dark:#A9B3CC;
+      --line:#E4E7EC;
+      --accent:#CB3A2E;
+      --maxw:1080px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:"IBM Plex Sans",system-ui,sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+      color-scheme:light;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+    a{color:inherit}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+    .mono{font-family:"IBM Plex Mono",monospace}
+
+    /* eyebrow: code-comment marker, true to a dev shop */
+    .eyebrow{
+      font-family:"IBM Plex Mono",monospace;
+      font-size:.84rem;
+      font-weight:500;
+      letter-spacing:.04em;
+      color:var(--muted);
+      text-transform:lowercase;
+      margin-bottom:18px;
+    }
+    .eyebrow::before{content:"// ";color:var(--accent)}
+
+    /* nav */
+    nav{
+      position:sticky;top:0;z-index:10;
+      background:rgba(246,247,249,.86);
+      backdrop-filter:saturate(140%) blur(8px);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .brand img,.brand svg{width:40px;height:40px;display:block}
+    .brand span{font-family:"IBM Plex Mono",monospace;font-weight:500;letter-spacing:.05em;font-size:1.02rem}
+    .nav-cta{
+      font-family:"IBM Plex Mono",monospace;font-size:.86rem;
+      text-decoration:none;padding:9px 16px;border:1px solid var(--ink);
+      border-radius:999px;transition:background .18s,color .18s;
+    }
+    .nav-cta:hover{background:var(--ink);color:#fff}
+
+    /* hero */
+    .hero{padding:104px 0 88px}
+    .hero h1{
+      font-family:"Space Grotesk",sans-serif;font-weight:700;
+      font-size:clamp(2.2rem,5.6vw,4.4rem);
+      line-height:1.04;letter-spacing:-.02em;
+      max-width:14ch;margin-bottom:26px;
+    }
+    .hero h1 .ship{position:relative;white-space:nowrap}
+    .hero h1 .ship::after{
+      content:"";position:absolute;left:0;right:0;bottom:.08em;height:.14em;
+      background:var(--accent);border-radius:2px;
+    }
+    .lede{font-size:1.18rem;color:var(--muted);max-width:54ch;margin-bottom:36px}
+    .cta-row{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+    .btn{
+      font-family:"IBM Plex Mono",monospace;font-size:.95rem;font-weight:500;
+      text-decoration:none;background:var(--accent);color:#fff;
+      padding:14px 26px;border-radius:999px;border:1px solid var(--accent);
+      transition:transform .18s,box-shadow .18s;
+    }
+    .btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(203,58,46,.30)}
+    .cred{font-family:"IBM Plex Mono",monospace;font-size:.84rem;color:var(--muted);line-height:1.7}
+
+    /* increment signature */
+    .increment{
+      margin-top:60px;font-family:"IBM Plex Mono",monospace;
+      font-size:1.05rem;color:var(--ink);display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    }
+    .increment b{font-weight:500}
+    .increment .arrow{color:var(--accent);font-weight:500}
+    .increment .note{color:var(--muted);font-size:.86rem}
+
+    section{padding:72px 0;border-top:1px solid var(--line)}
+    .section-head{margin-bottom:48px}
+    .section-head h2{
+      font-family:"Space Grotesk",sans-serif;font-weight:700;
+      font-size:clamp(1.7rem,3vw,2.3rem);letter-spacing:-.015em;max-width:18ch;
+    }
+
+    /* services */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+    .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:30px 26px}
+    .card .idx{font-family:"IBM Plex Mono",monospace;font-size:.8rem;color:var(--accent);margin-bottom:18px}
+    .card h3{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:1.22rem;margin-bottom:10px}
+    .card p{color:var(--muted);font-size:.98rem}
+    .aside-note{margin-top:26px;font-size:.96rem;color:var(--muted)}
+    .aside-note b{color:var(--ink);font-weight:600}
+
+    /* why — inverted */
+    .why{background:var(--navy);color:#fff;border-top:none}
+    .why .eyebrow{color:var(--muted-on-dark)}
+    .why .section-head h2{color:#fff}
+    .why .grid{grid-template-columns:repeat(3,1fr)}
+    .why .item{padding-top:22px;border-top:1px solid rgba(255,255,255,.14)}
+    .why .item h3{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:1.18rem;margin-bottom:10px}
+    .why .item p{color:var(--muted-on-dark);font-size:.98rem}
+    .why .why-cred{margin-top:34px;color:var(--muted-on-dark);font-size:1rem;max-width:54ch}
+    .why .why-cred b{color:#fff;font-weight:500}
+
+    /* contact */
+    .contact .mailto{
+      display:inline-block;font-family:"IBM Plex Mono",monospace;font-weight:500;
+      font-size:clamp(1.4rem,4.4vw,2.4rem);letter-spacing:-.01em;
+      text-decoration:none;color:var(--ink);
+      border-bottom:3px solid var(--accent);padding-bottom:4px;margin:8px 0 22px;
+      transition:color .18s;
+    }
+    .contact .mailto:hover{color:var(--navy-2)}
+    .contact p{color:var(--muted);max-width:48ch}
+    .contact .place{font-family:"IBM Plex Mono",monospace;font-size:.86rem;color:var(--muted);margin-top:6px}
+
+    footer{border-top:1px solid var(--line);padding:34px 0}
+    .foot-inner{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+    .foot-inner .mono{font-size:.82rem;color:var(--muted)}
+    .foot-inner a{text-decoration:none;border-bottom:1px dotted var(--muted)}
+    .foot-inner a:hover{color:var(--ink)}
+    .foot-wink{text-align:center;margin-top:22px;font-family:"IBM Plex Mono",monospace;font-size:.8rem;color:var(--muted)}
+    .foot-wink a{color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent)}
+    .foot-wink a:hover{color:var(--ink)}
+    .foot-legal{text-align:center;margin-top:14px;font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--muted);opacity:.85}
+    .foot-legal a{color:inherit;border-bottom:1px dotted var(--muted);text-decoration:none}
+    .foot-legal a:hover{color:var(--ink)}
+
+    /* reveal */
+    .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.in{opacity:1;transform:none}
+
+    @media (max-width:760px){
+      .grid,.why .grid{grid-template-columns:1fr}
+      .hero{padding:72px 0 64px}
+      section{padding:60px 0}
+    }
+    @media (prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      .reveal{opacity:1;transform:none;transition:none}
+      .btn:hover{transform:none}
+    }
+  </style>
 </head>
-<body class="bg-white text-gray-800 font-sans">
-  <header class="relative text-white text-center py-40 px-4">
-    <div class="absolute inset-0 bg-cover bg-center z-0" style="background-image: url('shutterstock_265868438.jpg');"></div>
-    <div class="absolute inset-0 bg-blue-900/70 z-0"></div>
-    <div class="relative z-10">
-      <img src="10TO11.png" alt="10to11 Logo" class="mx-auto mb-6 h-12">
-      <p class="text-lg md:text-xl">Apprenez le langage de demain : la Data</p>
-      <a href="#contact" class="inline-block mt-6 bg-white text-blue-900 border border-white hover:bg-blue-100 py-2 px-6 rounded-full text-lg font-semibold">Nous contacter</a>
+<body>
+
+  <nav>
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top">
+        <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="10TO11 robot">
+          <line x1="60" y1="30" x2="60" y2="17" stroke="#1B2A50" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="60" cy="11" r="5.5" fill="#CB3A2E"/>
+          <rect x="13" y="58" width="12" height="27" rx="6" fill="#1B2A50"/>
+          <rect x="95" y="58" width="12" height="27" rx="6" fill="#1B2A50"/>
+          <rect x="26" y="30" width="68" height="66" rx="22" fill="#1B2A50"/>
+          <rect x="48" y="49" width="7" height="25" rx="3.5" fill="#F6F7F9"/>
+          <rect x="65" y="49" width="7" height="25" rx="3.5" fill="#F6F7F9"/>
+          <path d="M48 83 Q60 93 72 83" stroke="#F6F7F9" stroke-width="5" stroke-linecap="round" fill="none"/>
+          <rect x="40" y="96" width="13" height="9" rx="4.5" fill="#1B2A50"/>
+          <rect x="67" y="96" width="13" height="9" rx="4.5" fill="#1B2A50"/>
+        </svg>
+        <span>10TO11</span>
+      </a>
+      <a class="nav-cta" href="#contact">Get in touch</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="wrap">
+      <p class="eyebrow">ai · automation · custom software</p>
+      <h1>AI solutions for SMEs. Designed, built and <span class="ship">shipped</span>.</h1>
+      <p class="lede">We help small and mid-sized companies turn AI from a buzzword into tools their teams actually use. Strategy, full-stack delivery, and a habit of finishing what we start.</p>
+      <div class="cta-row">
+        <a class="btn" href="#contact">Get in touch</a>
+        <span class="cred">Monaco &amp; remote</span>
+      </div>
+      <div class="increment">
+        <b>10</b><span class="arrow">→</span><b>11</b>
+        <span class="note">the last increment is the one that ships</span>
+      </div>
     </div>
   </header>
 
-  <section class="max-w-7xl mx-auto py-16 px-4">
-    <h2 class="text-3xl font-bold text-blue-900 uppercase text-center mb-10">Nos services</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div class="bg-gray-100 p-6 rounded-lg shadow text-center">
-        <i data-lucide="compass" class="text-blue-900 w-8 h-8 mx-auto mb-4"></i>
-        <h3 class="text-xl font-semibold text-blue-900 mb-2">Big Picture</h3>
-        <p>Audit, roadmap, accompagnement stratégique</p>
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">what we do</p>
+        <h2>From the first idea to something running in production.</h2>
       </div>
-      <div class="bg-gray-100 p-6 rounded-lg shadow text-center">
-        <i data-lucide="graduation-cap" class="text-blue-900 w-8 h-8 mx-auto mb-4"></i>
-        <h3 class="text-xl font-semibold text-blue-900 mb-2">Formation</h3>
-        <p>Masterclasses et ateliers de sensibilisations pour vos collaborateurs</p>
-      </div>
-      <div class="bg-gray-100 p-6 rounded-lg shadow text-center">
-        <i data-lucide="cpu" class="text-blue-900 w-8 h-8 mx-auto mb-4"></i>
-        <h3 class="text-xl font-semibold text-blue-900 mb-2">Projets IA</h3>
-        <p>Agent, Chatbot, Automatisation</p>
-      </div>
-      <div class="bg-gray-100 p-6 rounded-lg shadow text-center">
-        <i data-lucide="globe" class="text-blue-900 w-8 h-8 mx-auto mb-4"></i>
-        <h3 class="text-xl font-semibold text-blue-900 mb-2">Applications décentralisées</h3>
-        <p>Étude de cas blockchain, business et technologies Web 3.0</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="max-w-7xl mx-auto py-16 px-4">
-    <h2 class="text-3xl font-bold text-blue-900 uppercase text-center mb-10">Pourquoi nous choisir ?</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="bg-gray-100 p-6 rounded-lg shadow text-center">
-        <i data-lucide="users" class="text-blue-900 w-8 h-8 mx-auto mb-4"></i>
-        <h3 class="text-xl font-semibold text-blue-900 mb-2">Équipe dédiée</h3>
-        <p>Experts IA & dev full-stack engagés dans chaque projet</p>
-      </div>
-      <div class="bg-gray-100 p-6 rounded-lg shadow text-center">
-        <i data-lucide="leaf" class="text-blue-900 w-8 h-8 mx-auto mb-4"></i>
-        <h3 class="text-xl font-semibold text-blue-900 mb-2">Éthique & durable</h3>
-        <p>Conception responsable, impact environnemental réduit</p>
-      </div>
-      <div class="bg-gray-100 p-6 rounded-lg shadow text-center">
-        <i data-lucide="check-circle" class="text-blue-900 w-8 h-8 mx-auto mb-4"></i>
-        <h3 class="text-xl font-semibold text-blue-900 mb-2">Clé en main</h3>
-        <p>Livraison rapide, robuste et documentée</p>
+      <div class="grid">
+        <div class="card reveal">
+          <div class="idx">01</div>
+          <h3>Strategy &amp; roadmap</h3>
+          <p>Audit, roadmap, and hands-on guidance to decide where AI actually pays off, and just as importantly, where it does not.</p>
+        </div>
+        <div class="card reveal">
+          <div class="idx">02</div>
+          <h3>Workshops &amp; training</h3>
+          <p>Masterclasses and practical sessions that bring your teams up to speed on AI, without the hype and in plain language.</p>
+        </div>
+        <div class="card reveal">
+          <div class="idx">03</div>
+          <h3>AI projects</h3>
+          <p>Agents, automation, and custom applications, taken from prototype to a robust, documented product your team can rely on.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="contact" class="max-w-3xl mx-auto py-16 px-4 text-center">
-    <h2 class="text-3xl font-bold text-blue-900 uppercase mb-6">Contact</h2>
-    <p id="email" class="text-lg mb-2">📧 <a href="#" class="underline text-blue-900 hover:text-blue-700 transition-colors" id="email-link">[email protégé]</a></p>
-    <script>
-      const user = "hello";
-      const domain = "10to11.tech";
-      const link = document.getElementById("email-link");
-      link.href = `mailto:${user}@${domain}`;
-      link.textContent = `${user}@${domain}`;
-    </script>
-    <p class="text-lg mb-8">📍 Monaco / Remote</p>
-    <div class="mt-8">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2882.2608960976783!2d7.420073675688692!3d43.74122537110105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdc28128ea5f5b%3A0x423308fa01952cb5!2s36%20Av.%20de%20l'Annonciade%2C%2098000%20Monaco!5e0!3m2!1sfr!2sfr!4v1713100000000!5m2!1sfr!2sfr"
-        width="100%"
-        height="300"
-        style="border:0;"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        class="rounded shadow"
-      ></iframe>
+  <section class="why" id="why">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">why 10to11</p>
+        <h2>A small team that delivers, not a deck that promises.</h2>
+      </div>
+      <div class="grid">
+        <div class="item reveal">
+          <h3>People who deliver</h3>
+          <p>A dedicated team on every project, involved from the first call through to shipping. You always know who is building what.</p>
+        </div>
+        <div class="item reveal">
+          <h3>Built to last</h3>
+          <p>Responsible, sober engineering and a lighter footprint by default. Solutions meant to run for years, not to impress for a demo.</p>
+        </div>
+        <div class="item reveal">
+          <h3>Turnkey</h3>
+          <p>Fast, robust, documented. You get something that works, that you understand, and that you can hand over.</p>
+        </div>
+      </div>
+      <p class="why-cred reveal">And we know the subject from the inside: <b>our founder teaches AI as a lecturer at EDHEC Online.</b></p>
     </div>
   </section>
 
-  <footer class="text-center py-6 text-sm text-gray-500">
-    &copy; 2025 10TO11. Tous droits réservés. Hébergement GitHub
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <p class="eyebrow reveal">get in touch</p>
+      <a class="mailto" href="mailto:hello@10to11.tech">hello@10to11.tech</a>
+      <p class="reveal">Have a project in mind, or just want to think one through? Drop us a line and we will get back to you quickly.</p>
+      <p class="place reveal">Monaco / Remote</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-inner">
+        <span class="mono">© 2026 10TO11</span>
+        <a class="mono" href="https://www.linkedin.com/company/10to11/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <p class="foot-wink">Why 10TO11? Some amplifiers stop at ten. Ours goes to eleven.</p>
+      <p class="foot-legal">10TO11 is a brand of SARL Nextstep, Monaco. · <a href="legal-notice.html">Legal notice</a></p>
+    </div>
   </footer>
 
   <script>
-    lucide.createIcons();
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
   </script>
 </body>
 </html>
