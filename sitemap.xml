@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://10to11.tech/</loc>
+    <lastmod>2026-06-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://10to11.tech/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://10to11.tech/en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://10to11.tech/"/>
+  </url>
+  <url>
+    <loc>https://10to11.tech/en.html</loc>
+    <lastmod>2026-06-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://10to11.tech/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://10to11.tech/en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://10to11.tech/"/>
+  </url>
+</urlset>

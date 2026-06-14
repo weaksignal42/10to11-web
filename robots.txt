@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://10to11.tech/sitemap.xml
